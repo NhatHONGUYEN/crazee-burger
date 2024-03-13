@@ -18,7 +18,7 @@ const LoginPageStyled = styled.div`
   justify-content: center;
   align-items: center;
 
-  ::before {
+  &::before {
     content: "";
     background: url("/public/images/burger-and-fries-background.jpg")
       rgba(0, 0, 0, 0.75);
