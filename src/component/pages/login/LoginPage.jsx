@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 export default function LoginPage() {
   return (
     <LoginPageStyled>
-      <Logo />
+      <Logo className={"logo-login-page"} />
       <LoginForm />
     </LoginPageStyled>
   );
@@ -20,8 +20,7 @@ const LoginPageStyled = styled.div`
 
   &::before {
     content: "";
-    background: url("/public/images/burger-and-fries-background.jpg")
-      rgba(0, 0, 0, 0.75);
+    background: url("/burger-and-fries-background.jpg") rgba(0, 0, 0, 0.75);
     background-size: cover;
     background-position: center;
     background-blend-mode: darken;
@@ -32,5 +31,9 @@ const LoginPageStyled = styled.div`
     right: 0;
     bottom: 0;
     z-index: -1;
+  }
+
+  .logo-login-page {
+    transform: scale(2.5);
   }
 `;
