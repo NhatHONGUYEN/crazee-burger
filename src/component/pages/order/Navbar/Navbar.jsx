@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import Logo from "../../reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import NavBarRightSide from "./NavBArRightSide";
-import { theme } from "../theme";
-import { refreshPage } from "../../../utils/window";
+import { theme } from "../../theme";
+import { refreshPage } from "../../../../utils/window";
 
 export default function Navbar({ username }) {
   return (
