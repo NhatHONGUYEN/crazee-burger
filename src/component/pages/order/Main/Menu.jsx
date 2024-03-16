@@ -11,7 +11,10 @@ export default function Menu() {
       {menu.map((produit) => {
         return (
           <div key={produit.id} className="produit">
-            {produit.title}{" "}
+            <div className="image">
+              <img src={produit.imageSource} alt={produit.title} />
+            </div>
+            <div className="title"> {produit.title}</div>
           </div>
         );
       })}
