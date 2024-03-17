@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Profile from "./Profile";
+import ToggleButon from "../../../reusable-ui/ToggleButton";
 
 export default function NavBarRightSide({ username }) {
   return (
     <NavbarRightSideStyled>
-      {/* <div className="admin-button">Admin Button</div> */}
+      <ToggleButon
+        labelIfUnchecked="ACTIVER LE MODE ADMIN"
+        labelIfChecked="DESACTIVER LE MODE ADMIN"
+      />
       <Profile className={username} />
     </NavbarRightSideStyled>
   );
