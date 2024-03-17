@@ -3,19 +3,20 @@ import styled from "styled-components";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../theme";
 import Card from "../../../reusable-ui/Card";
+import { formatPrice } from "../../../../utils/maths";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
 
   return (
     <MenuStyled className="menu">
-      {menu.map((produit) => {
+      {menu.map(({ id, imageSource, title, price }) => {
         return (
           <Card
-            key={produit.id}
-            imageSource={produit.imageSource}
-            title={produit.title}
-            price={produit.price}
+            key={id}
+            imageSource={imageSource}
+            title={title}
+            leftDescription={formatPrice(price)}
           />
         );
       })}
