@@ -25,11 +25,14 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
+  border: 1px solid blue;
   background: ${theme.colors.background_white};
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  padding: 50px 50px 150px;
-  grid-row-gap: 60px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 50px 50px 150px;
+  grid-row-gap: 60px;
   justify-items: center;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+  overflow-y: scroll;
 `;
