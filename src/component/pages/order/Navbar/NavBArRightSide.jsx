@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Profile from "./Profile";
-import ToggleButon from "../../../reusable-ui/ToggleButton";
+import ToggleButon from "../../../reusable-ui/ToggleButton.jsx";
 
 import "react-toastify/dist/ReactToastify.css";
 
