@@ -10,7 +10,6 @@ export default function Tab({ Icon, onClick, className, label }) {
 }
 
 const TabStyled = styled.button`
-  border: 1px solid blue;
   padding: 0 20px;
   height: 43px;
 
