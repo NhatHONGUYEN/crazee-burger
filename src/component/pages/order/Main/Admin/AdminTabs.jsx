@@ -5,7 +5,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { theme } from "../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 import { useContext } from "react";
-import { getTabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./getTabsConfig";
 
 export default function AdminTabs() {
   const {
@@ -35,7 +35,7 @@ export default function AdminTabs() {
           label={tab.label}
           Icon={tab.Icon}
           onClick={() => selectTab(tab.index)}
-          className={tab.className}
+          className={currentTabSelected === tabs.index ? "is-active" : ""}
         />
       ))}
     </AdminTabsStyled>
