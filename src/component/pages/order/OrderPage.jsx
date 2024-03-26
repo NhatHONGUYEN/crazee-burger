@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./Navbar/Navbar";
 import { theme } from "../theme";
@@ -8,11 +7,9 @@ import { useState } from "react";
 
 export default function OrderPage() {
   //state
-  const { username } = useParams();
+
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isAddSelected, setIsAddSelected] = useState(true);
-  const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
 
   //comportement
@@ -21,7 +18,6 @@ export default function OrderPage() {
     setIsModeAdmin,
     isCollapsed,
     setIsCollapsed,
-
     currentTabSelected,
     setCurrentTabSelected,
   };
