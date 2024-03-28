@@ -4,6 +4,7 @@ import { theme } from "../theme";
 import Main from "./Main/Main";
 import OrderContext from "../../../context/OrderContext";
 import { useState } from "react";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
   //state
@@ -11,8 +12,18 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
 
   //comportement
+
+  const handleAdd = (newProduct) => {
+    const menuCopy = [...menu];
+
+    const menuUpdated = [newProduct, ...menuCopy];
+
+    setMenu(menuUpdated);
+  };
+
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -20,6 +31,9 @@ export default function OrderPage() {
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
+    menu,
+    setMenu,
+    handleAdd,
   };
   //affichage (render)
   return (
