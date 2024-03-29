@@ -8,11 +8,16 @@ export default function Card({
   imageSource,
   leftDescription,
   hasDeleteButton,
+  onDelete,
 }) {
   return (
     <CardStyled className="produit">
       {hasDeleteButton && (
-        <button className="delete-button" arial="delete-button">
+        <button
+          className="delete-button"
+          arial="delete-button"
+          onClick={onDelete}
+        >
           <TiDelete className="icon" />
         </button>
       )}

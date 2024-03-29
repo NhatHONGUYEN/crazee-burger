@@ -12,6 +12,6 @@ export default createContext({
 
   menu: [],
   handleClick: () => {},
-
   handleDelete: () => {},
+  resetMenu: () => {},
 });
