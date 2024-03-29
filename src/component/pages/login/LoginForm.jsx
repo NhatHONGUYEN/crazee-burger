@@ -37,8 +37,8 @@ export default function LoginForm() {
           onChange={handleChange}
           placeholder={"Entrez votre prénom"}
           Icon={<BsPersonCircle />}
-          className={"input-with-icon"}
           required
+          className="input-login"
         />
       </div>
       <PrimaryButton
@@ -74,5 +74,9 @@ const LoginFormStyled = styled.form`
     color: ${theme.colors.white};
     margin: 20px 10px 10px;
     font-size: ${theme.fonts.size.P4};
+  }
+
+  .input-login {
+    margin: 18px 0;
   }
 `;
