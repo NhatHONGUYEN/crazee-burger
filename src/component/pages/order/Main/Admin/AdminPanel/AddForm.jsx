@@ -2,7 +2,11 @@ import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import { FiCheck } from "react-icons/fi";
+import { FaHamburger } from "react-icons/fa";
+import { BsFillCameraFill } from "react-icons/bs";
+import { MdOutlineEuro } from "react-icons/md";
 import { theme } from "../../../../theme";
+import TextInput from "../../../../../reusable-ui/TextInput";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -50,26 +54,32 @@ export default function AddForm() {
         )}
       </div>
       <div className="input-fields">
-        <input
+        <TextInput
           name="title"
           value={newProduct.title}
           type="text"
           placeholder="Nom du produit (ex: Super Burger)"
           onChange={handleChange}
+          Icon={<FaHamburger />}
+          version="minimalist"
         />
-        <input
+        <TextInput
           name="imageSource"
           value={newProduct.imageSource}
           type="text"
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
           onChange={handleChange}
+          Icon={<BsFillCameraFill />}
+          version="minimalist"
         />
-        <input
+        <TextInput
           name="price"
           value={newProduct.price ? newProduct.price : ""}
           type="text"
           placeholder="Prix"
           onChange={handleChange}
+          Icon={<MdOutlineEuro />}
+          version="minimalist"
         />
       </div>
       <div className="submit">
@@ -89,7 +99,6 @@ const AddFormStyled = styled.form`
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
-
   height: 100%;
   width: 70%;
   grid-column-gap: 20px;
@@ -124,13 +133,14 @@ const AddFormStyled = styled.form`
 
   .input-fields {
     grid-area: 1 / 2 / -2 / 3;
-    background: blue;
+
     display: grid;
+    grid-row-gap: 8px;
   }
 
   .submit {
-    grid-area: 4 / -2 / -1 / -1;
     background: green;
+    grid-area: 4 / -2 / -1 / -1;
     display: flex;
     align-items: center;
 

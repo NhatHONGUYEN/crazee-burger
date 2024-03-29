@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../theme";
+import styled from "styled-components";
 
 export default function LoginForm() {
   //state
@@ -39,6 +40,7 @@ export default function LoginForm() {
           Icon={<BsPersonCircle />}
           required
           className="input-login"
+          version="normal"
         />
       </div>
       <PrimaryButton
