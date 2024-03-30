@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 import { theme } from "../theme";
 import styled from "styled-components";
 
@@ -43,7 +43,7 @@ export default function LoginForm() {
           version="normal"
         />
       </div>
-      <PrimaryButton
+      <Button
         className="button-with-icon"
         label={"Accédez à mon espace"}
         Icon={<IoChevronForward />}
