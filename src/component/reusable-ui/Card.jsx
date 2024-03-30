@@ -135,7 +135,7 @@ const CardStyled = styled.div`
         .primary-button {
           font-size: ${theme.fonts.size.XS};
           cursor: pointer;
-          padding: 12px;
+          padding: 12px 12px 12px 21px;
         }
       }
     }
