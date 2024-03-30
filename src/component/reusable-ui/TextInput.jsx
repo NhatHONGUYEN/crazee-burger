@@ -38,10 +38,7 @@ const TextInputStyled = styled.div`
     }
   }
 
-  ${(props) => {
-    if (props.version === "normal") return extraStyleNormal;
-    if (props.version === "minimalist") return extraStyleMinimalist;
-  }}
+  ${(props) => extraStyle[props.version]}
 `;
 
 const extraStyleNormal = css`
@@ -71,3 +68,8 @@ const extraStyleMinimalist = css`
     }
   }
 `;
+
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist,
+};
