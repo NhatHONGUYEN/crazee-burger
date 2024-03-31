@@ -1,11 +1,26 @@
 import styled from "styled-components";
-
-import PrimaryButton from "./PrimaryButton";
+import { TiDelete } from "react-icons/ti";
+import Button from "./Button";
 import { theme } from "../pages/theme";
 
-export default function Card({ title, imageSource, leftDescription }) {
+export default function Card({
+  title,
+  imageSource,
+  leftDescription,
+  hasDeleteButton,
+  onDelete,
+}) {
   return (
     <CardStyled className="produit">
+      {hasDeleteButton && (
+        <button
+          className="delete-button"
+          arial="delete-button"
+          onClick={onDelete}
+        >
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -14,7 +29,7 @@ export default function Card({ title, imageSource, leftDescription }) {
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button className="primary-button" label={"Ajouter"} />
           </div>
         </div>
       </div>
@@ -30,8 +45,37 @@ const CardStyled = styled.div`
   grid-template-rows: 65% 1fr;
   padding: 20px;
   padding-bottom: 10px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+  box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
+
+  .delete-button {
+    border: 1px solid red;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .icon {
+    height: 100%;
+    width: 100%;
+  }
+
+  :hover {
+    color: ${theme.colors.red};
+  }
+
+  :active {
+    color: ${theme.colors.primary};
+  }
 
   .image {
     width: 100%;
@@ -91,7 +135,7 @@ const CardStyled = styled.div`
         .primary-button {
           font-size: ${theme.fonts.size.XS};
           cursor: pointer;
-          padding: 12px;
+          padding: 12px 12px 12px 21px;
         }
       }
     }
