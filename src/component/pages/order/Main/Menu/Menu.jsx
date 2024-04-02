@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-
 import { theme } from "../../../theme";
 import Card from "../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
-import { fakeMenu } from "../../../../../fakeData/fakeMenu";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 
@@ -15,17 +13,17 @@ export default function Menu() {
   const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected } =
     useContext(OrderContext);
 
+  const handleClick = (idProductSelected) => {
+    const productClickedOn = menu.find(
+      (product) => product.id === idProductSelected
+    );
+    setProductSelected(productClickedOn);
+  };
+
   if (menu.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
-
-  const handleClick = (idProductSelected) => {
-    const productSelected = menu.find(
-      (product) => product.id === idProductSelected
-    );
-    setProductSelected(productSelected);
-  };
 
   return (
     <MenuStyled className="menu">
