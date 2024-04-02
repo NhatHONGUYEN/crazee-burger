@@ -20,7 +20,7 @@ export default function OrderPage() {
   //comportement
 
   const handleAdd = (newProduct) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
 
@@ -28,7 +28,7 @@ export default function OrderPage() {
   };
 
   const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelete
@@ -37,7 +37,7 @@ export default function OrderPage() {
   };
 
   const handleEdit = (productBeingEdited) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
 
     const indexOfProductToEdit = menu.findIndex(
       (menuProduct) => menuProduct.id === productBeingEdited.id
