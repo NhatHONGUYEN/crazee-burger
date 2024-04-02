@@ -20,7 +20,7 @@ export default function OrderPage() {
   //comportement
 
   const handleAdd = (newProduct) => {
-    const menuCopy = [...menu];
+    const menuCopy = JSON.parse(JSON.stringify(menu));
 
     const menuUpdated = [newProduct, ...menuCopy];
 
@@ -28,7 +28,7 @@ export default function OrderPage() {
   };
 
   const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = [...menu];
+    const menuCopy = JSON.parse(JSON.stringify(menu));
 
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelete
@@ -36,6 +36,17 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   };
 
+  const handleEdit = (productBeingEdited) => {
+    const menuCopy = JSON.parse(JSON.stringify(menu));
+
+    const indexOfProductToEdit = menu.findIndex(
+      (menuProduct) => menuProduct.id === productBeingEdited.id
+    );
+
+    menuCopy[indexOfProductToEdit] = productBeingEdited;
+
+    setMenu(menuCopy);
+  };
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
   };
@@ -55,6 +66,7 @@ export default function OrderPage() {
     setNewProduct,
     productSelected,
     setProductSelected,
+    handleEdit,
   };
   //affichage (render)
   return (
