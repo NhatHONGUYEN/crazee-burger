@@ -6,6 +6,7 @@ import OrderContext from "../../../context/OrderContext";
 import { useState } from "react";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   //state
@@ -33,6 +34,7 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelete
     );
+
     setMenu(menuUpdated);
   };
 

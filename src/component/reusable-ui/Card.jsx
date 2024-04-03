@@ -17,8 +17,8 @@ export default function Card({
     <CardStyled
       className="produit"
       onClick={onClick}
-      isSelected={isSelected}
       isHoverable={isHoverable}
+      isSelected={isSelected}
     >
       <div className="card">
         {hasDeleteButton && (
@@ -38,7 +38,11 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button className="primary-button" label={"Ajouter"} />
+              <Button
+                className="primary-button"
+                label={"Ajouter"}
+                onClick={(event) => event.stopPropagation()}
+              />
             </div>
           </div>
         </div>
@@ -48,7 +52,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle};
+  ${(isHoverable) => isHoverable && hoverableStyle};
   border-radius: ${theme.borderRadius.extraRound};
   height: 330px;
 
