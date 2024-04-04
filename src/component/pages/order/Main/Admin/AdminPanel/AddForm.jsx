@@ -1,24 +1,14 @@
-import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
-import TextInput from "../../../../../reusable-ui/TextInput";
-import Button from "../../../../../reusable-ui/Button";
-import ImagePreview from "./ImagePreview";
-import SubmitMessage from "./SubmitMessage";
-import { getInputTextsConfig } from "./inputTextConfig";
-
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import Form from "./Form.jsx";
+import SubmitButton from "./SubmitButton.jsx";
 
 export default function AddForm() {
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handlesubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newProductToAdd = {
       ...newProduct,
@@ -41,61 +31,14 @@ export default function AddForm() {
     }, 2000);
   };
 
-  const inputTexts = getInputTextsConfig(newProduct);
-
   return (
-    <AddFormStyled onSubmit={handlesubmit}>
-      <ImagePreview
-        title={newProduct.title}
-        imageSource={newProduct.imageSource}
-      />
-      <div className="input-fields">
-        {inputTexts.map((input) => (
-          <TextInput
-            {...input}
-            key={input.id}
-            onChange={handleChange}
-            version="minimalist"
-          />
-        ))}
-      </div>
-      <div className="submit">
-        <Button
-          className="submit-button"
-          label={"Ajouter un nouveau produit au menu"}
-          version="succes"
-        />
-        {isSubmitted && <SubmitMessage />}
-      </div>
-    </AddFormStyled>
+    <Form
+      product={newProduct}
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+      isSubmitted={isSubmitted}
+    >
+      <SubmitButton isSubmitted={isSubmitted} />
+    </Form>
   );
 }
-
-const AddFormStyled = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
-  height: 100%;
-  width: 70%;
-  grid-column-gap: 20px;
-  grid-row-gap: 8px;
-
-  .input-fields {
-    grid-area: 1 / 2 / -2 / 3;
-
-    display: grid;
-    grid-row-gap: 8px;
-  }
-
-  .submit {
-    grid-area: 4 / -2 / -1 / -1;
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 3px;
-
-    .submit-button {
-      height: 100%;
-    }
-  }
-`;

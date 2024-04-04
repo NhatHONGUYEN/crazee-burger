@@ -3,9 +3,10 @@ import Navbar from "./Navbar/Navbar";
 import { theme } from "../theme";
 import Main from "./Main/Main";
 import OrderContext from "../../../context/OrderContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   //state
@@ -15,11 +16,13 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const titleEditRef = useRef();
 
   //comportement
 
   const handleAdd = (newProduct) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
 
@@ -27,14 +30,26 @@ export default function OrderPage() {
   };
 
   const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelete
     );
+
     setMenu(menuUpdated);
   };
 
+  const handleEdit = (productBeingEdited) => {
+    const menuCopy = deepClone(menu);
+
+    const indexOfProductToEdit = menu.findIndex(
+      (menuProduct) => menuProduct.id === productBeingEdited.id
+    );
+
+    menuCopy[indexOfProductToEdit] = productBeingEdited;
+
+    setMenu(menuCopy);
+  };
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
   };
@@ -52,6 +67,10 @@ export default function OrderPage() {
     resetMenu,
     newProduct,
     setNewProduct,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    titleEditRef,
   };
   //affichage (render)
   return (
