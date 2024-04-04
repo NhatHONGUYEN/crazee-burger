@@ -87,10 +87,9 @@ const CardStyled = styled.div`
     .icon {
       height: 100%;
       width: 100%;
-    }
-
-    :hover {
-      color: ${theme.colors.red};
+      :hover {
+        color: ${theme.colors.red};
+      }
     }
 
     :active {
@@ -182,24 +181,24 @@ const selectedStyle = css`
     background-color: ${theme.colors.white};
     border: 1px solid ${theme.colors.white};
     transition: all 200ms ease-out;
-    :hover {
+    &:hover {
       color: ${theme.colors.white};
       background-color: ${theme.colors.primary};
       border: 1px solid ${theme.colors.white};
       transition: all 200ms ease-out;
     }
-    :active {
+    &:active {
       background-color: ${theme.colors.white};
       color: ${theme.colors.primary};
     }
 
-    &.is-disabled {
+    .is-disabled {
       opacity: 50%;
       cursor: not-allowed;
       z-index: 2;
     }
 
-    &.with-focus {
+    .with-focus {
       border: 1px solid white;
       background-color: ${theme.colors.white};
       color: ${theme.colors.white};
