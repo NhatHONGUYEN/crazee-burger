@@ -6,7 +6,7 @@ export default function EditInfoMessage() {
   return (
     <EditInfoMessageStyled className="sentence">
       Cliquer sur un produit du menu pour le modifier
-      <span className="live-update">en temps réel</span>
+      <span className="live-update"> en temps réel</span>
     </EditInfoMessageStyled>
   );
 }

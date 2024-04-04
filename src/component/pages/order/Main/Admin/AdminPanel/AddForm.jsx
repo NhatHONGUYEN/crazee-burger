@@ -1,7 +1,8 @@
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
-import { Form } from "react-router-dom";
+import Form from "./Form.jsx";
+import SubmitButton from "./SubmitButton.jsx";
 
 export default function AddForm() {
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
@@ -36,6 +37,8 @@ export default function AddForm() {
       onSubmit={handleSubmit}
       onChange={handleChange}
       isSubmitted={isSubmitted}
-    />
+    >
+      <SubmitButton isSubmitted={isSubmitted} />
+    </Form>
   );
 }

@@ -1,40 +1,34 @@
 import styled from "styled-components";
-import OrderContext from "../../../../../../context/OrderContext";
-import { useState } from "react";
+import React from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
-import Button from "../../../../../reusable-ui/Button";
 import ImagePreview from "./ImagePreview";
-import SubmitMessage from "./SubmitMessage";
 import { getInputTextsConfig } from "./inputTextConfig";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
-export default function Form({ product, onSubmit, onChange, isSubmitted }) {
-  const inputTexts = getInputTextsConfig(product);
+const Form = React.forwardRef(
+  ({ product, onSubmit, onChange, children }, ref) => {
+    const inputTexts = getInputTextsConfig(product);
 
-  return (
-    <FormStyled onSubmit={onSubmit}>
-      <ImagePreview title={product.title} imageSource={product.imageSource} />
-      <div className="input-fields">
-        {inputTexts.map((input) => (
-          <TextInput
-            {...input}
-            key={input.id}
-            onChange={onChange}
-            version="minimalist"
-          />
-        ))}
-      </div>
-      <div className="submit">
-        <Button
-          className="submit-button"
-          label={"Ajouter un nouveau produit au menu"}
-          version="succes"
-        />
-        {isSubmitted && <SubmitMessage />}
-      </div>
-    </FormStyled>
-  );
-}
+    return (
+      <FormStyled onSubmit={onSubmit}>
+        <ImagePreview title={product.title} imageSource={product.imageSource} />
+        <div className="input-fields">
+          {inputTexts.map((input) => (
+            <TextInput
+              {...input}
+              key={input.id}
+              onChange={onChange}
+              version="minimalist"
+              ref={ref && input.name === "title" ? ref : null}
+            />
+          ))}
+        </div>
+        <div className="form-footer">{children}</div>
+      </FormStyled>
+    );
+  }
+);
+
+export default Form;
 
 const FormStyled = styled.form`
   display: grid;
@@ -52,15 +46,11 @@ const FormStyled = styled.form`
     grid-row-gap: 8px;
   }
 
-  .submit {
+  .form-footer {
     grid-area: 4 / -2 / -1 / -1;
     display: flex;
     align-items: center;
     position: relative;
     top: 3px;
-
-    .submit-button {
-      height: 100%;
-    }
   }
 `;
