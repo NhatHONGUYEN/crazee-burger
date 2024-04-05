@@ -29,10 +29,7 @@ const MainStyled = styled.div`
 
   display: grid;
   grid-template-columns: 25% 1fr;
-
-  /* .basket {
-    background: pink;
-  } */
+  overflow: hidden;
 
   .menu-and-admin {
     position: relative;
