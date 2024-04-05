@@ -1,0 +1,12 @@
+import React from "react";
+import styled from "styled-components";
+import { theme } from "../pages/theme";
+
+export default function Header({ children }) {
+  return <HeaderStyled>{children}</HeaderStyled>;
+}
+
+const HeaderStyled = styled.div`
+  height: 70px;
+  background: ${theme.colors.background_dark};
+`;
