@@ -4,9 +4,8 @@ import { theme } from "../theme";
 import Main from "./Main/Main";
 import OrderContext from "../../../context/OrderContext";
 import { useRef, useState } from "react";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
-import { deepClone } from "../../../utils/array";
+import { useMenu } from "../../../hooks/useMenu";
 
 export default function OrderPage() {
   //state
@@ -14,45 +13,11 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
-
+  const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenu();
   //comportement
-
-  const handleAdd = (newProduct) => {
-    const menuCopy = deepClone(menu);
-
-    const menuUpdated = [newProduct, ...menuCopy];
-
-    setMenu(menuUpdated);
-  };
-
-  const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = deepClone(menu);
-
-    const menuUpdated = menuCopy.filter(
-      (product) => product.id !== idOfProductToDelete
-    );
-
-    setMenu(menuUpdated);
-  };
-
-  const handleEdit = (productBeingEdited) => {
-    const menuCopy = deepClone(menu);
-
-    const indexOfProductToEdit = menu.findIndex(
-      (menuProduct) => menuProduct.id === productBeingEdited.id
-    );
-
-    menuCopy[indexOfProductToEdit] = productBeingEdited;
-
-    setMenu(menuCopy);
-  };
-  const resetMenu = () => {
-    setMenu(fakeMenu.MEDIUM);
-  };
 
   const orderContextValue = {
     isModeAdmin,

@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../theme";
-import Card from "../../../../reusable-ui/Card";
-import { formatPrice } from "../../../../../utils/maths";
-import OrderContext from "../../../../../context/OrderContext";
+import { theme } from "../../../../../theme";
+import Card from "../../../../../../reusable-ui/Card";
+import { formatPrice } from "../../../../../../../utils/maths";
+import OrderContext from "../../../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 
-const IMAGE_BY_DEFAULT = "/public/coming-soon.png";
+const IMAGE_BY_DEFAULT = "/coming-soon.png";
 
 export default function Menu() {
   const {
@@ -45,7 +45,7 @@ export default function Menu() {
     handleDelete(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
-    titleEditRef.current.focus();
+    titleEditRef.current && titleEditRef.current.focus();
   };
 
   return (
@@ -72,7 +72,7 @@ export default function Menu() {
 const MenuStyled = styled.div`
   background: ${theme.colors.background_white};
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   padding: 50px 50px 150px;
   grid-row-gap: 60px;
   justify-items: center;
