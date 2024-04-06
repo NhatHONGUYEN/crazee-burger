@@ -9,7 +9,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 
-const IMAGE_BY_DEFAULT = "/public/coming-soon.png";
+const IMAGE_BY_DEFAULT = "/coming-soon.png";
 
 export default function Menu() {
   const {
