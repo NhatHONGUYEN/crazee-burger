@@ -11,12 +11,7 @@ export const useBasket = () => {
     const isProductAlreadInBasket = find(productToAdd.id, basketCopy);
 
     if (!isProductAlreadInBasket) {
-      const newBasketProduct = {
-        ...productToAdd,
-        quantity: 1,
-      };
-      const basketUpdated = [newBasketProduct, ...basketCopy];
-      setBasket(basketUpdated);
+      createNewProductInBasket(productToAdd, basketCopy, setBasket);
       return;
     }
 
@@ -29,6 +24,15 @@ export const useBasket = () => {
     );
     basketCopy[indexOfBasketProductToIncrement].quantity += 1;
     setBasket(basketCopy);
+  };
+
+  const createNewProductInBasket = (productToAdd, basketCopy, setBasket) => {
+    const newBasketProduct = {
+      ...productToAdd,
+      quantity: 1,
+    };
+    const basketUpdated = [newBasketProduct, ...basketCopy];
+    setBasket(basketUpdated);
   };
 
   return { basket, handleAddtoBasket };
