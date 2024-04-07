@@ -19,6 +19,13 @@ export const useBasket = () => {
       const basketUpdated = [newBasketProduct, ...basketCopy];
 
       setBasket(basketUpdated);
+    } else {
+      const indexOfBasketProductToIncrement = basket.findIndex(
+        (basketProduct) => basketProduct.id === productToAdd.id
+      );
+      basketCopy[indexOfBasketProductToIncrement].quantity += 1;
+
+      setBasket(basketCopy);
     }
   };
 
