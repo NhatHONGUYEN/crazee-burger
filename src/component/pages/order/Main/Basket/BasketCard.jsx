@@ -117,7 +117,6 @@ const BasketCardStyled = styled.div`
     z-index: 1;
   }
 
-  /* hover de la card */
   &:hover {
     .delete-button {
       border: none;
