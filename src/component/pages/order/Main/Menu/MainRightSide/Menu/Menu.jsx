@@ -11,6 +11,7 @@ import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
 } from "../../../../../../../enums/product";
+import { find } from "../../../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -23,15 +24,14 @@ export default function Menu() {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
+    handleAddtoBasket,
   } = useContext(OrderContext);
 
   const handleClick = async (idProductSelected) => {
     if (!isModeAdmin) return;
     await setIsCollapsed(false);
     await setCurrentTabSelected("edit");
-    const productClickedOn = menu.find(
-      (product) => product.id === idProductSelected
-    );
+    const productClickedOn = find(idProductSelected, menu);
     await setProductSelected(productClickedOn);
     titleEditRef.current.focus();
   };
@@ -49,6 +49,11 @@ export default function Menu() {
     titleEditRef.current && titleEditRef.current.focus();
   };
 
+  const handleAddButton = (event, idProductToAdd) => {
+    event.stopPropagation();
+    const productToAdd = find(idProductToAdd, menu);
+    handleAddtoBasket(productToAdd);
+  };
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, imageSource, title, price }) => {
@@ -63,6 +68,7 @@ export default function Menu() {
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            onAdd={(event) => handleAddButton(event, id)}
           />
         );
       })}
