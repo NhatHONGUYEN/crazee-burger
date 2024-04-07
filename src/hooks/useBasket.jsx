@@ -20,9 +20,9 @@ export const useBasket = () => {
       return;
     }
 
-    incrementProductAlreadyInBAsket();
+    incrementProductAlreadyInBAsket(productToAdd, basketCopy);
   };
-  const incrementProductAlreadyInBAsket = () => {
+  const incrementProductAlreadyInBAsket = (productToAdd, basketCopy) => {
     const indexOfBasketProductToIncrement = findIndex(
       productToAdd.id,
       basketCopy
