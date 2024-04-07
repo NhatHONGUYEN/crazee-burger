@@ -9,7 +9,8 @@ import { useContext } from "react";
 import { theme } from "../../../theme";
 
 export default function Basket() {
-  const { basket, isModeAdmin } = useContext(OrderContext);
+  const { basket, isModeAdmin, handleDeleteBasketProduct } =
+    useContext(OrderContext);
 
   const isBasketEmpty = basket.length === 0;
 
@@ -24,7 +25,11 @@ export default function Basket() {
       {isBasketEmpty ? (
         <EmptyBasket />
       ) : (
-        <BasketProducts basket={basket} isModeAdmin={isModeAdmin} />
+        <BasketProducts
+          basket={basket}
+          isModeAdmin={isModeAdmin}
+          handleDeleteBasketProduct={handleDeleteBasketProduct}
+        />
       )}
       <Footer />
     </BasketStyled>
