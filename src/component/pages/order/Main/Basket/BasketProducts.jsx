@@ -5,7 +5,7 @@ export default function BasketProducts({ basket }) {
   return (
     <BasketProductsStyled>
       {basket.map((basketProduct) => (
-        <div className="basket-card">
+        <div className="basket-card" key={basketProduct.id}>
           <BasketCard
             {...basketProduct}
             imageSource={
