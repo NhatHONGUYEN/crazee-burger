@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Card from "../../../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../../../utils/maths";
-import OrderContext from "../../../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../context/OrderContext.jsx";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
@@ -24,7 +24,7 @@ export default function Menu() {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
-    handleAddtoBasket,
+    handleAddToBasket,
     handleDeleteBasketProduct,
   } = useContext(OrderContext);
 
@@ -53,8 +53,7 @@ export default function Menu() {
 
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    const productToAdd = findObjectById(idProductToAdd, menu);
-    handleAddtoBasket(productToAdd);
+    handleAddToBasket(idProductToAdd);
   };
   return (
     <MenuStyled className="menu">

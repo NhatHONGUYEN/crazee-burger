@@ -18,7 +18,7 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenu();
-  const { basket, handleAddtoBasket, handleDeleteBasketProduct } = useBasket();
+  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
   //comportement
 
   const orderContextValue = {
@@ -39,7 +39,7 @@ export default function OrderPage() {
     handleEdit,
     titleEditRef,
     basket,
-    handleAddtoBasket,
+    handleAddToBasket,
     handleDeleteBasketProduct,
   };
   //affichage (render)
