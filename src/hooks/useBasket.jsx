@@ -38,7 +38,7 @@ export const useBasket = () => {
   };
 
   const handleDeleteBasketProduct = (idBasketProduct) => {
-    const basketUpdated = removeObjectById(idBasketProduct, basketCopy);
+    const basketUpdated = removeObjectById(idBasketProduct, basket);
     setBasket(basketUpdated);
   };
 

@@ -4,6 +4,7 @@ import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import Form from "./Form.jsx";
 import SubmitButton from "./SubmitButton.jsx";
 import { useSuccesMessage } from "../../../../../../hooks/useSuccesMessage.jsx";
+import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths.js";
 
 export default function AddForm() {
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
@@ -14,6 +15,7 @@ export default function AddForm() {
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
+      price: replaceFrenchCommaWithDot(newProduct.price),
     };
     handleAdd(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT);
