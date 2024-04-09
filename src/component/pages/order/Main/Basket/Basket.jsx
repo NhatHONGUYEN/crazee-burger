@@ -27,7 +27,7 @@ export default function Basket() {
       ) : (
         <BasketProducts
           basket={basket}
-          isModeAdmin={isModeAdmin}
+          $isModeAdmin={isModeAdmin}
           handleDeleteBasketProduct={handleDeleteBasketProduct}
         />
       )}
