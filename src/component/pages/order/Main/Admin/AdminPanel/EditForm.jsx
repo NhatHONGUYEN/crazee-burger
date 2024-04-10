@@ -4,15 +4,20 @@ import EditInfoMessage from "./EditInfoMessage.jsx";
 import Form from "./Form.jsx";
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleEdit, titleEditRef } =
-    useContext(OrderContext);
+  const {
+    username,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    titleEditRef,
+  } = useContext(OrderContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     const productBeingUpdated = { ...productSelected, [name]: value };
 
     setProductSelected(productBeingUpdated);
-    handleEdit(productBeingUpdated);
+    handleEdit(productBeingUpdated, username);
   };
 
   return (
