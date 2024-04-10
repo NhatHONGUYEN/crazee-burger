@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { theme } from "../theme";
 import styled from "styled-components";
+import { createUser } from "../../../api/user";
 
 export default function LoginForm() {
   //state
@@ -15,7 +15,7 @@ export default function LoginForm() {
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    createUser(inputValue);
     setInputValue("");
     navigate(`order/${inputValue}`);
   };
