@@ -55,9 +55,6 @@ export default function OrderPage() {
     handleProductSelected,
   };
 
-  //appel API pour récupérer l'utilisateur "Alex"
-  getUser("Alex");
-
   //affichage (render)
 
   return (

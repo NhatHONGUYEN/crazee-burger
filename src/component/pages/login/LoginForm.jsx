@@ -6,22 +6,24 @@ import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { theme } from "../theme";
 import styled from "styled-components";
-import { createUser } from "../../../api/user";
+import { authenticateUser, createUser, getUser } from "../../../api/user";
 
 export default function LoginForm() {
   //state
-  const [inputValue, setInputValue] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
   //comportement
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createUser(inputValue);
-    setInputValue("");
-    navigate(`order/${inputValue}`);
+
+    authenticateUser(username);
+
+    setUsername("");
+    navigate(`order/${username}`);
   };
 
   const handleChange = (e) => {
-    setInputValue(e.target.value);
+    setUsername(e.target.value);
   };
 
   //affichage (render)
@@ -34,7 +36,7 @@ export default function LoginForm() {
       </div>
       <div>
         <TextInput
-          value={inputValue}
+          value={username}
           onChange={handleChange}
           placeholder={"Entrez votre prénom"}
           Icon={<BsPersonCircle />}
