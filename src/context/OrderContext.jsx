@@ -21,10 +21,11 @@ export default createContext({
 
   productSelected: {},
   setProductSelected: () => {},
+  handleProductSelected: () => {},
 
   titleEditRef: null,
 
   basket: [],
-  handleAddtoBasket: () => {},
+  handleAddToBasket: () => {},
   handleDeleteBasketProduct: () => {},
 });
