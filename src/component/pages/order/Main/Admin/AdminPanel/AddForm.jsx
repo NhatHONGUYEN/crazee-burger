@@ -1,5 +1,5 @@
 import OrderContext from "../../../../../../context/OrderContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import Form from "./Form.jsx";
 import SubmitButton from "./SubmitButton.jsx";
@@ -7,7 +7,8 @@ import { useSuccesMessage } from "../../../../../../hooks/useSuccesMessage.jsx";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths.js";
 
 export default function AddForm() {
-  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
+  const { username, handleAdd, newProduct, setNewProduct } =
+    useContext(OrderContext);
   const { isSubmitted, displaySuccesMessage } = useSuccesMessage();
 
   const handleSubmit = (event) => {
@@ -17,7 +18,7 @@ export default function AddForm() {
       id: crypto.randomUUID(),
       price: replaceFrenchCommaWithDot(newProduct.price),
     };
-    handleAdd(newProductToAdd);
+    handleAdd(newProductToAdd, username);
     setNewProduct(EMPTY_PRODUCT);
     displaySuccesMessage();
   };

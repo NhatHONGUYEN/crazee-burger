@@ -11,11 +11,11 @@ import Welcome from "./Welcome.jsx";
 
 export default function LoginForm() {
   //state
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("Bob");
   const navigate = useNavigate();
   //comportement
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     authenticateUser(username);
 
@@ -23,8 +23,8 @@ export default function LoginForm() {
     navigate(`order/${username}`);
   };
 
-  const handleChange = (e) => {
-    setUsername(e.target.value);
+  const handleChange = (event) => {
+    setUsername(event.target.value);
   };
 
   //affichage (render)
