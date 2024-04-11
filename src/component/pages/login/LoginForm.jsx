@@ -11,14 +11,12 @@ import Welcome from "./Welcome.jsx";
 
 export default function LoginForm() {
   //state
-  const [username, setUsername] = useState("Bob");
+  const [username, setUsername] = useState();
   const navigate = useNavigate();
   //comportement
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     authenticateUser(username);
-
     setUsername("");
     navigate(`order/${username}`);
   };

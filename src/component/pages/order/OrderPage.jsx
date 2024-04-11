@@ -9,8 +9,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectById } from "../../../utils/array";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/product";
-import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   //state
@@ -37,26 +36,9 @@ export default function OrderPage() {
     titleEditRef.current.focus();
   };
 
-  const initialiseMenu = async () => {
-    const menuReceived = await getMenu(username);
-    setMenu(menuReceived);
-  };
-
-  const initialiseBasket = () => {
-    const basketReceived = getLocalStorage(username);
-    if (basketReceived) setBasket(basketReceived);
-  };
-
-  const initialiseUserSession = async () => {
-    await initialiseMenu();
-    initialiseBasket();
-  };
-
   useEffect(() => {
-    initialiseUserSession();
+    initialiseUserSession(username, setMenu, setBasket);
   }, []);
-
-  useEffect(() => {}, []);
 
   const orderContextValue = {
     username,
