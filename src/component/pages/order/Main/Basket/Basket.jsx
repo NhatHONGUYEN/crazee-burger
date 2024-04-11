@@ -9,7 +9,9 @@ import { theme } from "../../../theme";
 import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {
-  const { basket } = useContext(OrderContext);
+  const { basket, menu } = useContext(OrderContext);
+
+  if (menu === undefined) return <span>Chargement ...</span>;
 
   return (
     <BasketStyled>
