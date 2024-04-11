@@ -49,9 +49,10 @@ export const useBasket = () => {
     setLocalStorage(username, newBasket);
   };
 
-  const handleDeleteBasketProduct = (idBasketProduct) => {
+  const handleDeleteBasketProduct = (idBasketProduct, username) => {
     const basketUpdated = removeObjectById(idBasketProduct, basket);
     setBasket(basketUpdated);
+    setLocalStorage(username, basketUpdated);
   };
 
   return { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct };
