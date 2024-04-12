@@ -1,24 +1,14 @@
 import styled from "styled-components";
 import Total from "./Total";
 import Footer from "./Footer";
-import EmptyBasket from "./EmptyBasket";
-import BasketProducts from "./BasketProducts";
-import OrderContext from "../../../../../context/OrderContext";
-import { useContext } from "react";
 import { theme } from "../../../theme";
-import { isEmpty } from "../../../../../utils/array";
+import BasketBody from "./BasketBody/BasketBody";
 
 export default function Basket() {
-  const { basket, menu } = useContext(OrderContext);
-
   return (
     <BasketStyled>
       <Total />
-      {isEmpty(basket) ? (
-        <EmptyBasket isLoading={menu === undefined} />
-      ) : (
-        <BasketProducts />
-      )}
+      <BasketBody />
       <Footer />
     </BasketStyled>
   );
