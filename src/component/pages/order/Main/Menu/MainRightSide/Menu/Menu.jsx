@@ -13,6 +13,8 @@ import {
 } from "../../../../../../../enums/product";
 import { isEmpty } from "../../../../../../../utils/array";
 import Loader from "./Loader.jsx";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { menuAnimation } from "../../../../../theme/animation.js";
 
 export default function Menu() {
   const {
@@ -49,24 +51,25 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled className="menu">
+    <TransitionGroup component={MenuStyled} className="menu">
       {menu.map(({ id, imageSource, title, price }) => {
         return (
-          <Card
-            key={id}
-            title={title}
-            imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
-            leftDescription={formatPrice(price)}
-            hasDeleteButton={isModeAdmin}
-            onDelete={(event) => handleCardDelete(event, id)}
-            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
-            isHoverable={isModeAdmin}
-            isSelected={checkIfProductIsClicked(id, productSelected.id)}
-            onAdd={(event) => handleAddButton(event, id)}
-          />
+          <CSSTransition classNames={"menu-animation"} key={id} timeout={300}>
+            <Card
+              title={title}
+              imageSource={imageSource ? imageSource : IMAGE_COMING_SOON}
+              leftDescription={formatPrice(price)}
+              hasDeleteButton={isModeAdmin}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={isModeAdmin ? () => handleProductSelected(id) : null}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfProductIsClicked(id, productSelected.id)}
+              onAdd={(event) => handleAddButton(event, id)}
+            />
+          </CSSTransition>
         );
       })}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -79,4 +82,6 @@ const MenuStyled = styled.div`
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
+
+  ${menuAnimation}
 `;
