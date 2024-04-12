@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { TiDelete } from "react-icons/ti";
 import Button from "./Button";
 import { theme } from "../pages/theme";
+import { fadeInFromRight } from "../pages/theme/animation";
 
 export default function Card({
   title,
@@ -83,6 +84,7 @@ const CardStyled = styled.div`
       padding: 0;
       border: none;
       background: none;
+      animation: ${fadeInFromRight} ${theme.animations.speed.slow} ease-out;
     }
 
     .icon {
