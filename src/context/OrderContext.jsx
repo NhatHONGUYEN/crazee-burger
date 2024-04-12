@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 export default createContext({
+  username: "",
   isModeAdmin: false,
   setIsModeAdmin: () => {},
 
@@ -15,16 +16,18 @@ export default createContext({
   handleEdit: () => {},
   handleDelete: () => {},
   resetMenu: () => {},
+  handleAdd: () => {},
 
   newProduct: {},
   setNewProduct: () => {},
 
   productSelected: {},
   setProductSelected: () => {},
+  handleProductSelected: () => {},
 
   titleEditRef: null,
 
   basket: [],
-  handleAddtoBasket: () => {},
+  handleAddToBasket: () => {},
   handleDeleteBasketProduct: () => {},
 });

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Card from "../../../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../../../utils/maths";
-import OrderContext from "../../../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../context/OrderContext.jsx";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
@@ -11,51 +11,43 @@ import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
 } from "../../../../../../../enums/product";
-import { find } from "../../../../../../../utils/array";
+import { isEmpty } from "../../../../../../../utils/array";
+import Loader from "./Loader.jsx";
 
 export default function Menu() {
   const {
+    username,
     menu,
     isModeAdmin,
     handleDelete,
     resetMenu,
     productSelected,
     setProductSelected,
-    setIsCollapsed,
-    setCurrentTabSelected,
-    titleEditRef,
-    handleAddtoBasket,
+    handleAddToBasket,
     handleDeleteBasketProduct,
+    handleProductSelected,
   } = useContext(OrderContext);
-
-  const handleClick = async (idProductSelected) => {
-    if (!isModeAdmin) return;
-    await setIsCollapsed(false);
-    await setCurrentTabSelected("edit");
-    const productClickedOn = find(idProductSelected, menu);
-    await setProductSelected(productClickedOn);
-    titleEditRef.current.focus();
-  };
-
-  if (menu.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
-  }
 
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDelete(idProductToDelete);
-    handleDeleteBasketProduct(idProductToDelete);
+    handleDelete(idProductToDelete, username);
+    handleDeleteBasketProduct(idProductToDelete, username);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
-    titleEditRef.current && titleEditRef.current.focus();
   };
 
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    const productToAdd = find(idProductToAdd, menu);
-    handleAddtoBasket(productToAdd);
+    handleAddToBasket(idProductToAdd, username);
   };
+
+  if (menu === undefined) return <Loader />;
+
+  if (isEmpty(menu)) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />;
+  }
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, imageSource, title, price }) => {
@@ -67,7 +59,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
+            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
             onAdd={(event) => handleAddButton(event, id)}

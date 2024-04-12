@@ -1,40 +1,37 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { theme } from "../theme";
 import styled from "styled-components";
+import { authenticateUser } from "../../../api/user";
+import Welcome from "./Welcome.jsx";
 
 export default function LoginForm() {
   //state
-  const [inputValue, setInputValue] = useState("");
+  const [username, setUsername] = useState();
   const navigate = useNavigate();
   //comportement
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setInputValue("");
-    navigate(`order/${inputValue}`);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    authenticateUser(username);
+    setUsername("");
+    navigate(`order/${username}`);
   };
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
+  const handleChange = (event) => {
+    setUsername(event.target.value);
   };
 
   //affichage (render)
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <div>
-        <h1>Bienvenue chez nous !</h1>
-        <hr />
-        <h2>Connectez-vous</h2>
-      </div>
+      <Welcome />
       <div>
         <TextInput
-          value={inputValue}
+          value={username}
           onChange={handleChange}
           placeholder={"Entrez votre prénom"}
           Icon={<BsPersonCircle />}

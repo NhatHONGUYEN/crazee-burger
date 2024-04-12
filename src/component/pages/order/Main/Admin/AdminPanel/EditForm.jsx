@@ -1,23 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage.jsx";
 import Form from "./Form.jsx";
+import SavingMessage from "./SavingMessage.jsx";
+import { useSuccesMessage } from "../../../../../../hooks/useSuccesMessage.jsx";
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleEdit, titleEditRef } =
-    useContext(OrderContext);
+  const {
+    username,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    titleEditRef,
+  } = useContext(OrderContext);
+
+  const [valueOnFocus, setValueOnFocus] = useState();
+  const { isSubmitted: isSaved, displaySuccesMessage } = useSuccesMessage();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     const productBeingUpdated = { ...productSelected, [name]: value };
 
     setProductSelected(productBeingUpdated);
-    handleEdit(productBeingUpdated);
+    handleEdit(productBeingUpdated, username);
+  };
+
+  const handleOnFocus = (event) => {
+    const valueOnFocus = event.target.value;
+    setValueOnFocus(valueOnFocus);
+  };
+
+  const handleOnBlur = (event) => {
+    const valueOnBlur = event.target.value;
+    if (valueOnFocus !== valueOnBlur) {
+      console.log("ça a changé!!");
+      displaySuccesMessage();
+    }
   };
 
   return (
-    <Form product={productSelected} onChange={handleChange} ref={titleEditRef}>
-      <EditInfoMessage />
+    <Form
+      product={productSelected}
+      onChange={handleChange}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      ref={titleEditRef}
+    >
+      {isSaved ? <SavingMessage /> : <EditInfoMessage />}
     </Form>
   );
 }
