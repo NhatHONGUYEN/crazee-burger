@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BasketCard from "../BasketCard.jsx";
+import BasketCard from "./BasketCard.jsx";
 import { IMAGE_COMING_SOON } from "../../../../../../enums/product.js";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext.jsx";
