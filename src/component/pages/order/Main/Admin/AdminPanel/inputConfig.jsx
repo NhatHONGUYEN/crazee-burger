@@ -5,6 +5,8 @@ import {
   isAvailableOptions,
   isPublicisedOptions,
 } from "../../../../../../enums/select";
+import { FiPackage } from "react-icons/fi";
+import { GoMegaphone } from "react-icons/go";
 
 export const getInputTextsConfig = (newProduct) => [
   {
@@ -43,6 +45,7 @@ export const getSelectInputConfig = (newProduct) => [
     name: "isAvailable",
     value: newProduct.isAvailable,
     options: isAvailableOptions,
+    Icon: <FiPackage />,
     className: "is-available",
   },
   {
@@ -50,6 +53,7 @@ export const getSelectInputConfig = (newProduct) => [
     name: "isPublicised",
     value: newProduct.isPublicised,
     options: isPublicisedOptions,
+    Icon: <GoMegaphone />,
     className: "is-publicised",
   },
 ];
