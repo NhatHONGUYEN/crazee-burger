@@ -2,22 +2,13 @@ import styled from "styled-components";
 import React from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
-import { getInputTextsConfig } from "./inputTextConfig";
+import { getInputTextsConfig, getSelectInputConfig } from "./inputConfig";
 import SelectInput from "../../../../../reusable-ui/SelectInput";
-
-const isAvailableOptions = [
-  { value: true, label: "En stock" },
-  { value: false, label: "En rupture" },
-];
-
-const isPublicisedOptions = [
-  { value: true, label: "Sans pub" },
-  { value: false, label: "Avec pub" },
-];
 
 const Form = React.forwardRef(
   ({ product, onSubmit, onChange, onFocus, children, onBlur }, ref) => {
     const inputTexts = getInputTextsConfig(product);
+    const inputSelects = getSelectInputConfig(product);
 
     return (
       <FormStyled onSubmit={onSubmit}>
@@ -34,30 +25,16 @@ const Form = React.forwardRef(
               ref={ref && input.name === "title" ? ref : null}
             />
           ))}
-          {/* <select name="isAvailable" className="is-available" id="3">
-            {isAvailableOptions.map((option) => (
-              <option value={option.value}>{option.label}</option>
-            ))}
-          </select>
-          <select name="isPublicised" className="is-publicised" id="3">
-            {isPublicisedOptions.map((option) => (
-              <option value={option.value}>{option.label}</option>
-            ))}
-          </select> */}
 
-          <SelectInput
-            name={isAvailableOptions}
-            options={isAvailableOptions}
-            className="is-available"
-            id="3"
-          />
-          <SelectInput
-            name={isPublicisedOptions}
-            options={isPublicisedOptions}
-            className="is-publicised"
-            id="4"
-          />
+          {inputSelects.map((inputSelect) => (
+            <SelectInput
+              {...inputSelect}
+              key={inputSelect.id}
+              onChange={onChange}
+            />
+          ))}
         </div>
+
         <div className="form-footer">{children}</div>
       </FormStyled>
     );
