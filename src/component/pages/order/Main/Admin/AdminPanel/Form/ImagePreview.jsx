@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import { fadeIn } from "../../../../theme/animation";
+import { theme } from "../../../../../theme";
+import { fadeIn } from "../../../../../theme/animation";
 
 export default function ImagePreview({ imageSource, title }) {
   return (

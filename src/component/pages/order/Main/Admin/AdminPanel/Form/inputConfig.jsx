@@ -4,7 +4,7 @@ import { MdOutlineEuro } from "react-icons/md";
 import {
   isAvailableOptions,
   isPublicisedOptions,
-} from "../../../../../../enums/select";
+} from "../../../../../../../enums/select";
 import { FiPackage } from "react-icons/fi";
 import { GoMegaphone } from "react-icons/go";
 
