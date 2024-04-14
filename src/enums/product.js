@@ -8,6 +8,7 @@ export const EMPTY_PRODUCT = Object.freeze({
 });
 
 export const IMAGE_COMING_SOON = "/coming-soon.png";
+export const IMAGE_NO_STOCK = "/stock-epuise.png";
 
 export const BASKET_MESSAGE = {
   EMPTY: "Votre Commande est vide.",

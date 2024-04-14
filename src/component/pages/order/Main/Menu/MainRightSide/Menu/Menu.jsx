@@ -10,11 +10,13 @@ import { checkIfProductIsClicked } from "./helper";
 import {
   EMPTY_PRODUCT,
   IMAGE_COMING_SOON,
+  IMAGE_NO_STOCK,
 } from "../../../../../../../enums/product";
 import { isEmpty } from "../../../../../../../utils/array";
 import Loader from "./Loader.jsx";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../theme/animation.js";
+import { convertStringToBoolean } from "../../../../../../../fakeData/string.js";
 
 export default function Menu() {
   const {
@@ -52,7 +54,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled} className="menu">
-      {menu.map(({ id, imageSource, title, price }) => {
+      {menu.map(({ id, imageSource, title, price, isAvailable }) => {
         return (
           <CSSTransition classNames={"menu-animation"} key={id} timeout={300}>
             <Card
@@ -65,6 +67,10 @@ export default function Menu() {
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsClicked(id, productSelected.id)}
               onAdd={(event) => handleAddButton(event, id)}
+              overlapImageSource={IMAGE_NO_STOCK}
+              isOverlapImageVisible={
+                convertStringToBoolean(isAvailable) === false
+              }
             />
           </CSSTransition>
         );
