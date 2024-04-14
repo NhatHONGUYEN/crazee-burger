@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import { theme } from "../../theme"
+import React from "react";
+import styled from "styled-components";
+import { theme } from "../component/pages/theme";
 
 export default function Sticker({ label = "new", className }) {
-  return <StickerStyled className={className}>{label}</StickerStyled>
+  return <StickerStyled className={className}>{label}</StickerStyled>;
 }
 
 const StickerStyled = styled.span`
@@ -19,4 +19,4 @@ const StickerStyled = styled.span`
   border: none;
   color: white;
   text-transform: uppercase;
-`
+`;
