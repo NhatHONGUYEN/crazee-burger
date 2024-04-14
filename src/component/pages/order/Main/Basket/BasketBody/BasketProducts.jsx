@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import BasketCard from "./BasketCard.jsx";
-import { IMAGE_COMING_SOON } from "../../../../../../enums/product.js";
+import {
+  BASKET_MESSAGE,
+  IMAGE_COMING_SOON,
+} from "../../../../../../enums/product.js";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext.jsx";
 import { findObjectById } from "../../../../../../utils/array.js";
 import { checkIfProductIsClicked } from "../../Menu/MainRightSide/Menu/helper.js";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { basketAnimation } from "../../../../theme/animation.js";
+import { formatPrice } from "../../../../../../utils/maths.js";
+import { convertStringToBoolean } from "../../../../../../fakeData/string";
 
 export default function BasketProducts() {
   const {
@@ -31,6 +36,9 @@ export default function BasketProducts() {
     >
       {basket.map((basketProduct) => {
         const menuProduct = findObjectById(basketProduct.id, menu);
+        const price = convertStringToBoolean(menuProduct.isAvailable)
+          ? formatPrice(menuProduct.price)
+          : BASKET_MESSAGE.NOT_AVAILABLE;
         return (
           <CSSTransition
             appear={true}
@@ -59,6 +67,11 @@ export default function BasketProducts() {
                   productSelected.id
                 )}
                 className={"card"}
+                price={
+                  convertStringToBoolean(menuProduct.isAvailable)
+                    ? formatPrice(menuProduct.price)
+                    : BASKET_MESSAGE.NOT_AVAILABLE
+                }
               />
             </div>
           </CSSTransition>
