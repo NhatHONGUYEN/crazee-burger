@@ -1,5 +1,5 @@
 import { BsCloudCheck } from "react-icons/bs";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../theme";
 import styled from "styled-components";
 
 export default function SavingMessage() {
