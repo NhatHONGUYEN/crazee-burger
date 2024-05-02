@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { fakeBasket } from "../fakeData/fakeBasket";
 import {
   deepClone,
   removeObjectById,
